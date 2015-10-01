@@ -230,7 +230,7 @@ Public Sub ImportAllSource()
     CloseFormsReports
     'InitUsingUcs2
 
-    source_path = VCS_Dir.ProjectPath() & "source\"
+    source_path = VCS_Dir.ProjectPath() & "source\" & CurrentProject.name & "\"
     If Not FSO.FolderExists(source_path) Then
         MsgBox "No source found at:" & vbCrLf & source_path, vbExclamation, "Import failed"
         Exit Sub
