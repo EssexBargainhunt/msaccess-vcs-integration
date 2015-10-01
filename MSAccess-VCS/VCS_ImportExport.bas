@@ -52,7 +52,9 @@ Public Sub ExportAllSource()
     CloseFormsReports
     'InitUsingUcs2
 
-    source_path = VCS_Dir.ProjectPath() & "source\" & CurrentProject.name & "\"
+    source_path = VCS_Dir.ProjectPath() & "source\"
+    VCS_Dir.MkDirIfNotExist source_path
+    source_path = source_path & CurrentProject.name & "\"
     VCS_Dir.MkDirIfNotExist source_path
 
     Debug.Print
