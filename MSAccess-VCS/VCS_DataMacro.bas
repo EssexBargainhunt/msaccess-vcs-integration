@@ -7,11 +7,12 @@ Option Explicit
 Public Sub ExportDataMacros(tableName As String, directory As String)
     On Error GoTo Err_export:
 
+#If VBA7 Then
     Dim filePath As String: filePath = directory & tableName & ".xml"
 
     VCS_IE_Functions.ExportObject acTableDataMacro, tableName, filePath, VCS_File.UsingUcs2
     FormatDataMacro filePath
-
+#end if
     Exit Sub
 
 Err_export:
@@ -21,8 +22,12 @@ End Sub
 
 Public Sub ImportDataMacros(tableName As String, directory As String)
     On Error GoTo Err_import:
+
+#If VBA7 Then
     Dim filePath As String: filePath = directory & tableName & ".xml"
     VCS_IE_Functions.ImportObject acTableDataMacro, tableName, filePath, VCS_File.UsingUcs2
+#end if
+    exit sub
 
 Err_import:
     
