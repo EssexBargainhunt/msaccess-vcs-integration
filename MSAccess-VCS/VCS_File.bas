@@ -3,16 +3,29 @@ Option Compare Database
 
 Option Explicit
 
-Private Declare PtrSafe _
-    Function getTempPath Lib "kernel32" _
-         Alias "GetTempPathA" (ByVal nBufferLength As Long, _
-                               ByVal lpBuffer As String) As Long
-Private Declare PtrSafe _
-    Function getTempFileName Lib "kernel32" _
-         Alias "GetTempFileNameA" (ByVal lpszPath As String, _
-                                   ByVal lpPrefixString As String, _
-                                   ByVal wUnique As Long, _
-                                   ByVal lpTempFileName As String) As Long
+#If VBA7 Then
+    Private Declare PtrSafe _
+        Function getTempPath Lib "kernel32" _
+             Alias "GetTempPathA" (ByVal nBufferLength As Long, _
+                                   ByVal lpBuffer As String) As Long
+    Private Declare PtrSafe _
+        Function getTempFileName Lib "kernel32" _
+             Alias "GetTempFileNameA" (ByVal lpszPath As String, _
+                                       ByVal lpPrefixString As String, _
+                                       ByVal wUnique As Long, _
+                                       ByVal lpTempFileName As String) As Long
+#Else
+    Private Declare _
+        Function getTempPath Lib "kernel32" _
+             Alias "GetTempPathA" (ByVal nBufferLength As Long, _
+                                   ByVal lpBuffer As String) As Long
+    Private Declare _
+        Function getTempFileName Lib "kernel32" _
+             Alias "GetTempFileNameA" (ByVal lpszPath As String, _
+                                       ByVal lpPrefixString As String, _
+                                       ByVal wUnique As Long, _
+                                       ByVal lpTempFileName As String) As Long
+#End If
 
 ' --------------------------------
 ' Structures
